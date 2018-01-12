@@ -27,6 +27,14 @@ node {
             "Build Vote App":{def myEnv = docker.build('f75c2xymvqv54.azurecr.io/votingapp/example-voting-app-vote:latest', 'vote').push('latest')}
             )
     }
-   stage 'Smoke Test'
-   sh 'echo Smokeeyyyy'
+   stage 'Unit Tests'
+   sh 'echo test'
+   stage 'Browser Tests'
+        parallel(
+            "Edge":{sh 'echo test'},
+            "Firefox":{sh 'echo test'},
+            "Chrome":{sh 'echo test'}
+            )
+   stage 'Deploy to Production'
+   sh 'echo test'
 }
